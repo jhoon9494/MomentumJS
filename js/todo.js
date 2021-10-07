@@ -1,10 +1,14 @@
 const toDoForm = document.querySelector("#todo-form");
 const toDoInput = toDoForm.querySelector("input");
 const toDoList = document.querySelector("#todo-list");
-const toDoArray = []; //투두리스트 저장을 위한 빈 배열 생성
+
+const SAVEDTODOS_KEY = "savedToDos";
+
+let toDoArray = []; //투두리스트 저장을 위한 빈 배열 생성
+//새로고침할 때 localStorage에 저장된 데이터를 업데이트 하기 위해 const가 아닌 let으로 변수 선언.
 
 function saveToDos(){ //투두리스트 저장
-  localStorage.setItem("savedList",JSON.stringify(toDoArray));
+  localStorage.setItem(SAVEDTODOS_KEY,JSON.stringify(toDoArray));
   //JSON.stringify()는 js object 나 array 또는 어떤 js 코드건 간에 string으로 변환시켜줌
 }
 
@@ -29,7 +33,7 @@ function paintToDo(newTodo){ //투두리스트 추가
 }
 
 function handleToDoSubmit(event){
-  event.preventDefault(); // submit 실행 시, 기본동작인 새로고침을 막음.
+  event.preventDefault(); //submit 실행 시, 기본동작인 새로고침을 막음.
   const newToDo = toDoInput.value;
   toDoInput.value = ""; //input 초기화
   toDoArray.push(newToDo);
@@ -38,3 +42,11 @@ function handleToDoSubmit(event){
 }
 
 toDoForm.addEventListener("submit",handleToDoSubmit);
+
+const savedToDos = localStorage.getItem(SAVEDTODOS_KEY);
+
+if(savedToDos !== null){
+  const parsedToDos = JSON.parse(savedToDos); //JSON.parse()를 이용하면 string을 array로 변환할 수 있음. 
+  toDoArray = parsedToDos; //localStorage에 저장된 배열을 toDoArray의 값으로 집어 넣어서 이전 데이터를 업데이트.
+  parsedToDos.forEach(paintToDo); //forEach를 이용하면 배열의 각 값마다 하나의 함수를 실행할 수 있음.
+}
