@@ -13,7 +13,7 @@ function saveToDos(){ //투두리스트 저장
 }
 
 function deleteToDo(event){ //투두리스트 삭제
-  //매개변수를 넣을 경우,이벤트 발생 시 해당 이벤트에 대한 자세한 내용을 알 수 있음. 
+  //매개변수(event)를 넣을 경우, 이벤트 발생 시 해당 이벤트에 대한 자세한 내용을 알 수 있음. 
   const li = event.target.parentElement; //click 이벤트의 target과 부모요소를 파악
   li.remove();
 }
@@ -21,8 +21,9 @@ function deleteToDo(event){ //투두리스트 삭제
 function paintToDo(newTodo){ //투두리스트 추가
   //ul 태그 내부로 li, span, button 태그 및 내용 삽입
   const li = document.createElement("li");
+  li.id = newTodo.id;
   const span = document.createElement("span");
-  span.innerText = newTodo;
+  span.innerText = newTodo.text;
   const button = document.createElement("button");
   button.innerText = "❌";
   button.addEventListener("click", deleteToDo);
@@ -36,8 +37,13 @@ function handleToDoSubmit(event){
   event.preventDefault(); //submit 실행 시, 기본동작인 새로고침을 막음.
   const newToDo = toDoInput.value;
   toDoInput.value = ""; //input 초기화
-  toDoArray.push(newToDo);
-  paintToDo(newToDo);
+
+  const newTodoObj = { //localStorage에서 todolist를 삭제하기 위해 object 및 id 생성
+    text : newToDo,
+    id : Date.now(), //중복되지 않고 랜덤한 id 생성을 위해 Date.now() 사용
+  };
+  toDoArray.push(newTodoObj);
+  paintToDo(newTodoObj);
   saveToDos();
 }
 
