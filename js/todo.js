@@ -13,9 +13,12 @@ function saveToDos(){ //투두리스트 저장
 }
 
 function deleteToDo(event){ //투두리스트 삭제
-  //매개변수(event)를 넣을 경우, 이벤트 발생 시 해당 이벤트에 대한 자세한 내용을 알 수 있음. 
+  //매개변수(event)를 넣을 경우, 이벤트 발생 시 해당 이벤트에 대한 자세한 내용을 알 수 있음.
   const li = event.target.parentElement; //click 이벤트의 target과 부모요소를 파악
   li.remove();
+  toDoArray = toDoArray.filter(toDo => toDo.id !== parseInt(li.id));
+  //filter 함수를 이용하여 toDo.id와 li.id의 값이 같을 경우(return false) 투두리스트 배열에서 제외 
+  saveToDos();
 }
 
 function paintToDo(newTodo){ //투두리스트 추가
