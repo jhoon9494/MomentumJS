@@ -1,5 +1,5 @@
 const image = [
-  "0.jpeg", "1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg"
+  "0.jpeg", "1.jpeg", "2.jpeg", "3.jpeg"
 ]
 
 const chosenImg = image[(Math.floor(Math.random() * image.length))]; // 이미지 무작위 추출

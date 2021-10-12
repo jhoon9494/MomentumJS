@@ -26,13 +26,13 @@ function paintToDo(newTodo){ //투두리스트 추가
   const li = document.createElement("li");
   li.id = newTodo.id;
   const span = document.createElement("span");
-  span.innerText = newTodo.text;
+  span.innerText = ` ${newTodo.text}`;
   const button = document.createElement("button");
   button.innerText = "❌";
   button.addEventListener("click", deleteToDo);
 
-  li.appendChild(span);
   li.appendChild(button);
+  li.appendChild(span);
   toDoList.appendChild(li);
 }
 

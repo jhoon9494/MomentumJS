@@ -1,3 +1,71 @@
 .hidden {
   display: none;
 }
+
+img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+#weather{
+  position: fixed;
+  top: 7px;
+  right: 10px;
+  text-align: right;
+  color: white;
+  text-shadow: 3px 3px 3px gray;
+}
+
+h1, h2, #todo-form, #quote, #login-form{
+  text-align: center;
+  color: white;
+  text-shadow: 3px 3px 3px gray;
+  margin: 10px;
+}
+
+#quote{
+  position: fixed;
+  bottom: 7px;
+  left: 10px;
+}
+
+h1{
+  margin-top: 250px;
+  margin-bottom: 10px;
+  font-size: 130px;
+  line-height: 130px;
+}
+
+#todo-list{
+  text-align: left;
+  list-style: none;
+  color: white;
+  text-shadow: 3px 3px 3px gray;
+}
+
+#todo-list button {
+  background-color: transparent;
+  width: 30px;
+  border: 0px;
+}
+
+input{
+  color: white;
+  border: 0px;
+  border-bottom: solid 1px white;
+  background-color: transparent;
+}
+
+input::placeholder{
+  color: white;
+  text-align: center;
+}
+
+input:nth-child(2){
+  background-color: gray;
+  border: solid 1px black;
+}
