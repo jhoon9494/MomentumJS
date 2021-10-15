@@ -7,10 +7,13 @@ function onGeoOk(position){
   fetch(url) //url 불러오기
     .then((response) => response.json())
     .then((data) => {
-      const weather = document.querySelector("#weather span:first-child")
-      const city = document.querySelector("#weather span:last-child")
-      city.innerText = data.name;
+      const weather = document.querySelector("#weather span:first-child");
+      const temp = document.querySelector("#weather span:nth-child(2)");
+      const city = document.querySelector("#weather span:last-child");
+      city.innerText = `@${data.name}`;
       weather.innerText = data.weather[0].main;
+      temp.innerText = `${data.main.temp}°C`;
+
     });
 }
 function onGeoError(){
